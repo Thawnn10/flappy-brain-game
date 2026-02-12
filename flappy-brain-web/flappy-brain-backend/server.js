@@ -14,12 +14,16 @@ app.use(cors());
 
 app.use(express.json());
 const path = require('path');
+console.log("Static path:", path.join(__dirname, '..'));
 
+// Serve static files from flappy-brain-web folder
 app.use(express.static(path.join(__dirname, '..')));
 
+// Explicit root route
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../index.html'));
 });
+
 
 // Rate limiting
 const limiter = rateLimit({
